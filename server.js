@@ -74,7 +74,7 @@ if (cluster.isPrimary) {
           res.setHeader("content-length", data.size);
           res.setHeader(
             "Content-Disposition",
-            `attachment; filename"${File}.mp3"`
+            `attachment; filename="${File}.mp3"`
           );
 
           audio.pipe(res);
