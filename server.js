@@ -19,9 +19,9 @@ if (cluster.isPrimary) {
 
   app.get("/", async (req, res) => {
     const Link = req.query.url;
-
+try {
     if (Link && StreamAudio.validateID(Link)) {
-      try {
+      
         if (fs.existsSync(`music/${Link}.mp3`)) {
           const audio = fs.createReadStream(`music/${Link}.mp3`);
           const data = fs.statSync(`music/${Link}.mp3`);
@@ -50,13 +50,14 @@ if (cluster.isPrimary) {
 
           audio.pipe(res);
         });
-      } catch (error) {
-        console.log(error.message);
-        res.json("error");
-      }
+    
     } else {
       res.status(200).json("url not provided");
     }
+    } catch (error) {
+        console.log(error.message);
+        res.json("error");
+      }
   });
 
   app.get("/download/", async (req, res) => {
