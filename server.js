@@ -7,8 +7,7 @@ const fs = require("fs");
 const cluster = require("node:cluster");
 const os = require("os");
 const totalCpu = os.cpus().length;
-const cp = require("child_process");
-const ffmpeg = require("ffmpeg-static");
+
 
 if (cluster.isPrimary) {
   for (let i = 0; i < totalCpu; i++) {
