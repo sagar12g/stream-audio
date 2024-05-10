@@ -20,7 +20,7 @@ if (cluster.isPrimary) {
   app.get("/", async (req, res) => {
     const Link = req.query.url;
 try {
-    if (Link && StreamAudio.validateID(Link)) {
+    if (Link) {
       
         if (fs.existsSync(`music/${Link}.mp3`)) {
           const audio = fs.createReadStream(`music/${Link}.mp3`);
